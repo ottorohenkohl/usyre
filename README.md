@@ -7,7 +7,7 @@ It's purpose is to give some bare minimum backend functionalities like user and 
 
 ## Functionality
 
-The base of the Usyre is the [storage](lib/storage/) lib. It can save objects implementing
+The base of Usyre is the [storage](lib/storage/) lib. It can save objects implementing
 the [Container](lib/storable/storable.dart) interface automatically to a MongoDB server instance.
 The storage itself is single-threaded and kept quite simple. Performance is therefore not nearly
 equivalent with complex databases like [Hive](https://github.com/hivedb/hive/tree/master/hive).
