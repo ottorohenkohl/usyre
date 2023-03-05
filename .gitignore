@@ -1,0 +1,17 @@
+# Links to local packages/directories.
+/.dart_tool/
+
+# OS specific files.
+/.DS_Store
+
+# Files created by IDEs.
+/.fleet/
+/.idea/
+/.vscode/
+
+# Files for package building created by pub.
+/build/
+/pubspec.lock
+
+# Environment variable files.
+/.env*
