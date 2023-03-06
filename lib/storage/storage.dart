@@ -60,18 +60,13 @@ class Storage {
 
   /// Load a single object; Throws exception if there's no unique object.
   Future<Container> loadSingle(Options options) async {
-    var potential = await load(options);
-    var requested = potential.where(
-      (element) {
-        return true;
-      },
-    );
+    var containers = await load(options);
 
-    if (requested.length == 1) {
-      return potential.single;
+    if (containers.length == 1) {
+      return containers.single;
     }
 
-    if (requested.isEmpty) {
+    if (containers.isEmpty) {
       throw ContainerMissingException();
     }
 
@@ -79,19 +74,19 @@ class Storage {
       throw ContainerMissingException();
     }
 
-    return potential.first;
+    return containers.first;
   }
 
   /// Load a list of object; The result is filtered through the Options class.
   Future<List<Container>> load(Options options) async {
-    var selectedConverters = converters.where(
+    var matchingConverters = converters.where(
       (element) {
         return options.type == null || options.type == element.matching;
       },
     );
 
     var containers = <Container>[];
-    for (var converter in selectedConverters) {
+    for (ContainerConverter converter in matchingConverters) {
       (await Database().load(converter.layoutDatasheet())).forEach(
         (element) {
           converter.reset();

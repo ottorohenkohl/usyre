@@ -44,8 +44,7 @@ Future<Response> sessionCreate(Request request) async {
       return ResponseTemplate().success(body);
     } catch (e) {}
 
-    var stored = await Storage().load(Options(type: User));
-    var user = stored.singleWhere(
+    var user = (await Storage().load(Options(type: User))).singleWhere(
       (element) {
         return (element as User).username == username;
       },

@@ -87,11 +87,9 @@ class Database {
     var collection = mongodb.collection(datasheet.hash);
 
     try {
-      await collection.deleteOne(
-        {
-          'containerID': datasheet.data['containerID'],
-        },
-      );
+      await collection.deleteOne({
+        'containerID': datasheet.data['containerID'],
+      });
     } catch (exception) {
       throw DatabaseTransactionFailedException();
     }

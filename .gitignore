@@ -10,8 +10,4 @@
 /.vscode/
 
 # Files for package building created by pub.
-/build/
 /pubspec.lock
-
-# Environment variable files.
-/.env*

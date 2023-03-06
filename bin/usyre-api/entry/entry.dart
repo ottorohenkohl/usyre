@@ -86,8 +86,7 @@ Future<void> createAdmin() async {
     return;
   }
 
-  var stored = await Storage().load(Options(type: User));
-  var existing = stored.where(
+  var existing = (await Storage().load(Options(type: User))).where(
     (element) {
       return (element as User).username == username;
     },

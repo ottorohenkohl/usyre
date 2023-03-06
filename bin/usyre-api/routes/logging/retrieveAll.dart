@@ -1,10 +1,10 @@
 import 'package:shelf/shelf.dart';
 import 'package:usyre/exception/generic.dart';
 import 'package:usyre/logging/logger.dart';
+import 'package:usyre/logging/record.dart';
 import 'package:usyre/storage/options.dart';
 import 'package:usyre/storage/storage.dart';
 import 'package:usyre/user/role.dart';
-import 'package:usyre/logging/record.dart';
 
 import '../../template/response.dart';
 import '../../template/session.dart';

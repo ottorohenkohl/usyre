@@ -1,9 +1,9 @@
 import 'package:shelf/shelf.dart';
 import 'package:usyre/exception/generic.dart';
+import 'package:usyre/logging/record.dart';
 import 'package:usyre/storage/options.dart';
 import 'package:usyre/storage/storage.dart';
 import 'package:usyre/user/role.dart';
-import 'package:usyre/logging/record.dart';
 
 import '../../template/response.dart';
 import '../../template/session.dart';
@@ -22,14 +22,13 @@ Future<Response> recordDelete(Request request, String recordID) async {
       throw ForbiddenException();
     }
 
-    var record = (await Storage().load(Options(type: Record))).singleWhere(
-      (element) {
-        return (element as Record).containerID == recordID;
-      },
-      orElse: () {
-        throw NotFoundException();
-      },
-    );
+    var record = (await Storage().loadSingle(
+      Options(
+        type: Record,
+        containerID: recordID,
+        solo: true,
+      ),
+    )) as Record;
 
     await Storage().clear(record);
 

@@ -18,6 +18,10 @@ Future<Response> userDelete(Request request, String username) async {
   try {
     var session = SessionTemplate().load(data);
 
+    if (session.user.role == Role.guest) {
+      throw ForbiddenException();
+    }
+
     if (session.user.username != username && session.user.role != Role.admin) {
       throw ForbiddenException();
     }
@@ -29,7 +33,7 @@ Future<Response> userDelete(Request request, String username) async {
       orElse: () {
         throw NotFoundException();
       },
-    );
+    ) as User;
 
     await Storage().clear(user);
 
