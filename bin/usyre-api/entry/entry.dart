@@ -29,8 +29,8 @@ import '../template/response.dart';
 /// Entrypoint of the usyre-api submodule.
 void entry({List<String> arguments = const []}) async {
   var host = Platform.environment['API_HOST'] ?? InternetAddress.anyIPv4;
-  var path = Platform.environment['API_PATH'] ?? '/api';
   var port = Platform.environment['API_PORT'] ?? '8080';
+  var path = Platform.environment['API_PATH'] ?? '/';
 
   try {
     int.parse(port);
@@ -48,19 +48,19 @@ void entry({List<String> arguments = const []}) async {
 
   var router = Router(notFoundHandler: noRoute);
 
-  router.post('${path}/logging/<recordID>', recordDelete);
-  router.get('${path}/logging/<recordID>', recordRetrieve);
-  router.get('${path}/logging', recordRetrieveAll);
+  router.post('${path}logging/<recordID>', recordDelete);
+  router.get('${path}logging/<recordID>', recordRetrieve);
+  router.get('${path}logging', recordRetrieveAll);
 
-  router.post('${path}/session', sessionCreate);
-  router.delete('${path}/session', sessionDelete);
-  router.get('${path}/session/<sessionID>', sessionRetrieve);
+  router.post('${path}session', sessionCreate);
+  router.delete('${path}session', sessionDelete);
+  router.get('${path}session/<sessionID>', sessionRetrieve);
 
-  router.post('${path}/user', userCreate);
-  router.delete('${path}/user/<username>', userDelete);
-  router.get('${path}/user/<username>', userRetrieve);
-  router.get('${path}/user', userRetrieveAll);
-  router.patch('${path}/user/<username>', userUpdate);
+  router.post('${path}user', userCreate);
+  router.delete('${path}user/<username>', userDelete);
+  router.get('${path}user/<username>', userRetrieve);
+  router.get('${path}user', userRetrieveAll);
+  router.patch('${path}user/<username>', userUpdate);
 
   serve(router, host, int.parse(port));
 
