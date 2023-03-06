@@ -48,7 +48,7 @@ void entry({List<String> arguments = const []}) async {
 
   var router = Router(notFoundHandler: noRoute);
 
-  router.post('${path}logging/<recordID>', recordDelete);
+  router.delete('${path}logging/<recordID>', recordDelete);
   router.get('${path}logging/<recordID>', recordRetrieve);
   router.get('${path}logging', recordRetrieveAll);
 
