@@ -30,7 +30,7 @@ import '../template/response.dart';
 void entry({List<String> arguments = const []}) async {
   var host = Platform.environment['API_HOST'] ?? InternetAddress.anyIPv4;
   var path = Platform.environment['API_PATH'] ?? '/api';
-  var port = Platform.environment['API_PORT'] ?? '2000';
+  var port = Platform.environment['API_PORT'] ?? '8080';
 
   try {
     int.parse(port);
