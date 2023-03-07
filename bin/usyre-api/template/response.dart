@@ -32,10 +32,12 @@ class ResponseTemplate {
       response['data'].addAll(body);
     }
 
+    var encoder = JsonEncoder.withIndent('\t');
+
     return Response(
       200,
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(response),
+      body: encoder.convert(response),
     );
   }
 
@@ -156,10 +158,12 @@ class ResponseTemplate {
       ),
     );
 
+    var encoder = JsonEncoder.withIndent('\t');
+
     return Response(
       payload['info']['status'],
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(payload),
+      body: encoder.convert(payload),
     );
   }
 }
